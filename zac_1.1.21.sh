@@ -2,6 +2,8 @@
 
 result=Yes
 echo " "
+#2> /dev/null ensures the results is not printed out. 
+# -eq 0 checks that nothing is returned.
 if [ $(df --local -P | awk '{if (NR!=1) print$6}'| xargs -I '{}' find '{}' -xdev -type d \( -perm -002 -a ! -perm -1000 \) 2> /dev/null | wc -l) -eq 0 ]
 then 
 	result="no" 
